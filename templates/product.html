@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="logo-link">
+            <div class="logo">
+                <img src="/static/trendiol-logo.jpg" alt="Trendiol Logo" class="logo-image">
+                <span class="logo-text">Trendiol</span>
+            </div>
+        </a>
+    </div>
+
+    <div class="breadcrumbs">
+        {% for breadcrumb in breadcrumbs %}
+            {% if not loop.last %}
+                <a href="{% if breadcrumb == 'Anasayfa' %}/{% else %}/category/{{ breadcrumb|lower }}{% endif %}">{{ breadcrumb }}</a> &gt;
+            {% else %}
+                <span>{{ breadcrumb }}</span>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="product-detail">
+        <div class="product-image">
+            <img src="{{ product.image }}" alt="{{ product.name }}">
+        </div>
+        <div class="product-info">
+            <h1>{{ product.name }}</h1>
+            <p>{{ product.description }}</p>
+            <span class="price">{{ product.price }}</span>
+            <button class="buy-button">Satın Al</button>
+        </div>
+    </div>
+</body>
+</html>

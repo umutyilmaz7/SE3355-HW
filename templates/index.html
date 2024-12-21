@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trendiol</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="logo-link">
+            <div class="logo">
+                <img src="/static/trendiol-logo.jpg" alt="Trendiol Logo" class="logo-image">
+                <span class="logo-text">Trendiol</span>
+            </div>
+        </a>
+
+        <div class="categories">
+            <a href="/category/kadın">Kadın</a>
+            <a href="/category/erkek">Erkek</a>
+            <a href="/category/çocuk">Çocuk</a>
+        </div>
+
+        <form class="search-bar" method="POST" action="/search">
+            <input type="text" name="search" placeholder="Ürün, kategori veya marka yazınız" value="{{ search_query }}" />
+            <button type="submit">Ara</button>
+        </form>
+    </div>
+
+    <h2 class="section-title">Çok Satan Ürünler</h2>
+    <div class="products">
+        {% for product in products %}
+        <div class="product">
+            <a href="/product/{{ product.id }}" class="product-link">
+                <img src="{{ product.image }}" alt="{{ product.name }}">
+                <h3>{{ product.name }}</h3>
+                <p>{{ product.description }}</p>
+                <span class="price">{{ product.price }}</span>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
